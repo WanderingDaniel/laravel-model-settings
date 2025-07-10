@@ -34,7 +34,7 @@ trait HasSettingsTable
     public function getSettingsValue(): array
     {
         if (config('model_settings.settings_table_use_cache')) {
-            return Cache::rememberForever($this->getSettingsCacheKey(), function () {
+            return Cache::memo()->rememberForever($this->getSettingsCacheKey(), function () {
                 return $this->__getSettingsValue();
             });
         }
